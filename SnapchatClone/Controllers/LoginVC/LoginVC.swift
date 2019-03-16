@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginVC: UIViewController  {
+class LoginVC: UIViewController, VCDelegate  {
     var logoImageView: UIImageView!
     var loginRegisterSegControl: UISegmentedControl!
     
@@ -160,7 +160,13 @@ class LoginVC: UIViewController  {
     }
     
     /* PART 3B START (Hint: Define a function, that's used elsewhere in PART 3 CODE) */
-    
+    func toggleColor() {
+        if view.backgroundColor != UIColor(red: 154/255, green: 52/255, blue: 142/255, alpha: 1.0) {
+            view.backgroundColor = UIColor(red: 154/255, green: 52/255, blue: 142/255, alpha: 1.0)
+        } else {
+            view.backgroundColor =  UIColor(r: 0, g: 188, b: 255)
+        }
+    }
     /* PART 3B FINISH */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,7 +176,7 @@ class LoginVC: UIViewController  {
         passwordTextField.text = ""
         let destination = segue.destination as? FeedVC
         destination?.userID = self.ourUserID
-        // destination.vcDelegate1 = self // PART 3 CODE
+        destination?.vcDelegate1 = self // PART 3 CODE
     }
 }
 

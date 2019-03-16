@@ -8,6 +8,7 @@
 
 protocol VCDelegate {
     /* PART 3A START*/
+    func toggleColor()
     
     /* PART 3A FINISH*/
 }

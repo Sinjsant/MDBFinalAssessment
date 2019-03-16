@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class FeedVC: UIViewController  {
+class FeedVC: UIViewController, VCDelegate  {
     var countLabel: UILabel!
     var userID: String!
     
@@ -19,13 +19,14 @@ class FeedVC: UIViewController  {
     var tableView: UITableView!
     var arrayOfSnaps: [SnapImage]!
     
+    
     var selectedImage: SnapImage!
     
     var navBarColorSwitched = false
     
 
     override func viewDidLoad() {
-        // vcDelegate2 = self // PART 3 CODE
+        vcDelegate2 = self // PART 3 CODE
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
@@ -40,7 +41,13 @@ class FeedVC: UIViewController  {
     func setupArrayOfSnaps() {
         arrayOfSnaps = []
         /* PART 2B START */
-        
+        FirebaseAPIClient.getSnaps() { snapArray in
+            self.arrayOfSnaps = snapArray
+            self.tableView.reloadData()
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        }
         
         /* PART 2B FINISH */
         tableView.reloadData()
@@ -65,7 +72,13 @@ class FeedVC: UIViewController  {
     
     
     /* PART 3C START (Hint: Define a function, that's already used in part 3 code) */
-    
+    func toggleColor() {
+        if self.navigationController?.navigationBar.barTintColor != .blue {
+            self.navigationController?.navigationBar.barTintColor = .blue
+        } else {
+            self.navigationController?.navigationBar.barTintColor = .yellow
+        }
+    }
     /* PART 3C FINISH */
     
     

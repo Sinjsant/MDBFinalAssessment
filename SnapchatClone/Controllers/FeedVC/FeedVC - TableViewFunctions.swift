@@ -9,6 +9,8 @@
 import UIKit
 
 extension FeedVC: UITableViewDelegate, UITableViewDataSource {
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfSnaps.count
     }
@@ -52,8 +54,9 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func changeColors(_ vcDel : VCDelegate) {
-        // vcDel.toggleColor() // PART 3 CODE
+        vcDel.toggleColor() // PART 3 CODE
     }
+    
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
